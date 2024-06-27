@@ -175,6 +175,7 @@ jobs:
         rm -rf AnyKernel3/.git* AnyKernel3/README.md
         cd AnyKernel3/
           zip -q -r "SingkoKernel-[ZyC]${{ env.LOCALVERSION }}${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}.zip" *
+          mv SingkoKernel-[ZyC]${{ env.LOCALVERSION }}${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}.zip $GITHUB_WORKSPACE/kernel_workspace/SingkoKernel-[ZyC]${{ env.LOCALVERSION }}${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}.zip
     
     - name: Upload ${{ env.KERNEL_IMAGE_NAME }}
       if: env.CHECK_FILE_IS_OK == 'true'
@@ -192,10 +193,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload AnyKernel3
+    - name: Upload Flashable kernel
       if: env.CHECK_FILE_IS_OK == 'true'
       uses: actions/upload-artifact@v4
       with:
         name: SingkoKernel-[ZyC]${{ env.LOCALVERSION }}${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
-        path: kernel_workspace/AnyKernel3/*
+        path: kernel_workspace/*
          
