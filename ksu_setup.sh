@@ -51,6 +51,9 @@ setup_kernelsu() {
     else
         git checkout "$1" && echo "[-] Checked out $1." || echo "[-] Checkout default branch"
     fi
+
+    git config user.email "ayamgorengmanis87@gmail.com"
+    git config user.name "nullptr03"
     
     git revert 898e9d4f8ca9b2f46b0c6b36b80a872b5b88d899 && echo "Reverting [1.0] Drop Non-GKI Support commits"
     
