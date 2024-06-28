@@ -90,7 +90,7 @@ jobs:
         cd $GITHUB_WORKSPACE/kernel_workspace
         cd android-kernel
         echo -e "${color}Patching Kernel for KernelSU...${end}"
-        curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+        bash $GITHUB_WORKSPACE/ksu_setup.sh
         if grep -q CONFIG_KSU= arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}; then
             sed -i 's/# CONFIG_KSU is not set/CONFIG_KSU=y/' arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
             sed -i 's/CONFIG_KSU=n/CONFIG_KSU=y/' arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
