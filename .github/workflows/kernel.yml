@@ -74,7 +74,7 @@ jobs:
     - name: Download kernel source
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/SingkoLab/kernel_xiaomi_stone.git -b main android-kernel --depth=1
+        git clone https://x-access-token:${{ secrets.GH_PAT }}@github.com/SingkoLab/android_kernel_samsung_universal8895.git -b main android-kernel --depth=1
         if [[ ${{ env.ADD_LOCALVERSION_TO_FILENAME }} == 'true' ]]; then
           echo "LOCALVERSION=$(cat android-kernel/localversion)" >> $GITHUB_ENV
         else
