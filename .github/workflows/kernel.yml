@@ -33,7 +33,7 @@ jobs:
 
       - name: Clone kernel repo
         run: |
-          git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/SingkoLab/kernel_xiaomi_stone.git -b new kernel --depth=100
+          git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/SingkoLab/kernel_xiaomi_stone.git -b oc-test kernel --depth=100
           cd kernel 
 
       - name: Build
