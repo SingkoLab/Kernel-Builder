@@ -39,8 +39,8 @@ jobs:
       - name: Build
         run: |
           cd kernel
-          wget https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/batu/config.env
-          wget https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/batu/build.sh && chmod +x ./build.sh
+          wget https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/dream2lte/config.env
+          wget https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/dream2lte/build.sh && chmod +x ./build.sh
           echo "Building kernel"
           ./build.sh
 
