@@ -149,8 +149,8 @@ function kernelsu() {
 }
 
 # Enviromental variable
-DEVICE_MODEL="Redmi Note 12 5G/POCO X5 5G"
-DEVICE_CODENAME="stone"
+DEVICE_MODEL="Samsung Galaxy S8+/S8/Note 8"
+DEVICE_CODENAME="dream2lte"
 BUILD_TIME="$(TZ="Asia/Jakarta" date "+%m%d%Y")"
 export DEVICE_DEFCONFIG="exynos8895-dream2lte_defconfig"
 export ARCH="arm64"
