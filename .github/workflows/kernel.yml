@@ -33,14 +33,14 @@ jobs:
 
       - name: Clone kernel repo
         run: |
-          git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/SingkoLab/kernel_xiaomi_stone.git -b new kernel --depth=100
+          git clone https://github.com/EmanuelCN/kernel_xiaomi_sm8250 -b munch kernel --depth=100
           cd kernel 
 
       - name: Build
         run: |
           cd kernel
-          wget https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/batu/config.env
-          wget https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/batu/build.sh && chmod +x ./build.sh
+          wget https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/munch/config.env
+          wget https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/munch/build.sh && chmod +x ./build.sh
           echo "Building kernel"
           ./build.sh
 

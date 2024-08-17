@@ -140,24 +140,25 @@ function updateclang() {
 function kernelsu() {
     if [ "$KERNELSU" = "yes" ];then
           KERNEL_VARIANT="${KERNEL_VARIANT}-KernelSU"
+          rm -rf ${MainPath}/KernelSU
           if [ ! -f "${MainPath}/KernelSU/README.md" ]; then
              cd ${MainPath}
-             curl -LSs "https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/batu/ksu_setup.sh" | bash -
+             curl -LSs "https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/munch/ksu_setup.sh" | bash -
              sed -i "s/CONFIG_KSU=n/CONFIG_KSU=y/g" arch/${ARCH}/configs/${DEVICE_DEFCONFIG}
           fi
     fi
 }
 
 # Enviromental variable
-DEVICE_MODEL="Redmi Note 12 5G/POCO X5 5G"
-DEVICE_CODENAME="stone"
+DEVICE_MODEL="POCO F4 5G"
+DEVICE_CODENAME="munch"
 BUILD_TIME="$(TZ="Asia/Jakarta" date "+%m%d%Y")"
-export DEVICE_DEFCONFIG="holi-qgki_defconfig"
+export DEVICE_DEFCONFIG="vendor/munch_defconfig"
 export ARCH="arm64"
 export KBUILD_BUILD_USER="nullptr03"
 export KBUILD_BUILD_HOST="SingkoLab"
-export KERNEL_NAME="SingkoKernel"
-export SUBLEVEL="v5.4.$(cat "${MainPath}/Makefile" | grep "SUBLEVEL =" | sed 's/SUBLEVEL = *//g')"
+export KERNEL_NAME="N0kernel"
+export SUBLEVEL="v4.19.$(cat "${MainPath}/Makefile" | grep "SUBLEVEL =" | sed 's/SUBLEVEL = *//g')"
 IMAGE="${MainPath}/out/arch/arm64/boot/Image"
 CORES="$(nproc --all)"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
