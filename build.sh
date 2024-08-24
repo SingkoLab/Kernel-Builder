@@ -157,7 +157,7 @@ export ARCH="arm64"
 export KBUILD_BUILD_USER="kristoforusapm"
 export KBUILD_BUILD_HOST="SingkoLab"
 export KERNEL_NAME="SingkoKernel"
-export SUBLEVEL="v5.4.$(cat "${MainPath}/Makefile" | grep "SUBLEVEL =" | sed 's/SUBLEVEL = *//g')"
+export SUBLEVEL="v4.9.$(cat "${MainPath}/Makefile" | grep "SUBLEVEL =" | sed 's/SUBLEVEL = *//g')"
 IMAGE="${MainPath}/out/arch/arm64/boot/Image"
 CORES="$(nproc --all)"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
@@ -174,7 +174,6 @@ fi
 make O=out ARCH=$ARCH $DEVICE_DEFCONFIG
 make -j"$CORES" ARCH=$ARCH O=out \
     CC=clang \
-    LD=ld.lld \
     LLVM=1 \
     LLVM_IAS=1 \
     AR=llvm-ar \
