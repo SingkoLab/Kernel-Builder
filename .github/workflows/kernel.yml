@@ -33,7 +33,7 @@ jobs:
 
       - name: Clone kernel repo
         run: |
-          git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/SingkoLab/android_kernel_samsung_universal8895.git -b lineage-21 kernel --depth=100
+          git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/SingkoLab/android_kernel_samsung_universal8895.git -b bringup kernel --depth=100
           cd kernel 
 
       - name: Build
