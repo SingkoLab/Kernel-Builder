@@ -175,6 +175,7 @@ export KBUILD_BUILD_HOST="SingkoLab"
 export KERNEL_NAME="SingkoKernel"
 export SUBLEVEL="v5.4.$(cat "${MainPath}/Makefile" | grep "SUBLEVEL =" | sed 's/SUBLEVEL = *//g')"
 IMAGE="${MainPath}/out/arch/arm64/boot/Image.gz"
+DTBO_IMAGE="${MainPath}/out/arch/arm64/boot/dtbo.img"
 CORES="$(nproc --all)"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
@@ -206,6 +207,9 @@ make -j"$CORES" ARCH=$ARCH O=out \
       cd ${MainPath}
       git clone --depth=1 ${AnyKernelRepo} -b ${AnyKernelBranch} ${AnyKernelPath}
       cp $IMAGE ${AnyKernelPath}
+      if [[ -f "$DTBO_IMAGE" ]]; then
+        cp $DTBO_IMAGE ${AnyKernelPath}
+      fi
    else
       echo "❌ Compile Kernel for $DEVICE_CODENAME failed, Check console log to fix it!"
       if [ "$CLEANUP" = "yes" ];then
