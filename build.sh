@@ -87,6 +87,22 @@ function getclang() {
       ClangPath="${MainClangPath}"-zyc
       export PATH="${ClangPath}/bin:${PATH}"
     fi
+  elif [ "${ClangName}" = "geep" ]; then
+    if [ ! -f "${MainClangPath}-geep/bin/clang" ]; then
+      echo "[!] Clang is set to greenforce, cloning it..."
+      mkdir -p ${MainClangPath}-geep
+      cd clang-geep
+      wget https://github.com/greenforce-project/greenforce_clang/releases/download/25082024/greenforce-clang-20.0.0git-25082024.tar.gz
+      tar -xf greenforce-clang-20.0.0git-25082024.tar.gz
+      ClangPath="${MainClangPath}"-geep
+      export PATH="${ClangPath}/bin:${PATH}"
+      rm -f greenforce-clang-20.0.0git-25082024.tar.gz
+      cd ..
+    else
+      echo "[!] Clang already exists. Skipping..."
+      ClangPath="${MainClangPath}"-geep
+      export PATH="${ClangPath}/bin:${PATH}"
+    fi
   else
     echo "[!] Incorrect clang name. Check config.env for clang names."
     exit 1
@@ -142,23 +158,23 @@ function kernelsu() {
           KERNEL_VARIANT="${KERNEL_VARIANT}-KernelSU"
           if [ ! -f "${MainPath}/KernelSU/README.md" ]; then
              cd ${MainPath}
-             curl -LSs "https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/batu/ksu_setup.sh" | bash -
+             curl -LSs "https://raw.githubusercontent.com/SingkoLab/Kernel-Builder/spes/ksu_setup.sh" | bash -
              sed -i "s/CONFIG_KSU=n/CONFIG_KSU=y/g" arch/${ARCH}/configs/${DEVICE_DEFCONFIG}
           fi
     fi
 }
 
 # Enviromental variable
-DEVICE_MODEL="Redmi Note 12 5G/POCO X5 5G"
-DEVICE_CODENAME="stone"
-BUILD_TIME="$(TZ="Asia/Jakarta" date "+%m%d%Y")"
-export DEVICE_DEFCONFIG="holi-qgki_defconfig"
+DEVICE_MODEL="Redmi Note 11"
+DEVICE_CODENAME="spes"
+BUILD_TIME="$(TZ="Asia/Jakarta" date "+%Y%m%d")"
+export DEVICE_DEFCONFIG="vendor/bengal-perf_defconfig"
 export ARCH="arm64"
 export KBUILD_BUILD_USER="nullptr03"
 export KBUILD_BUILD_HOST="SingkoLab"
 export KERNEL_NAME="SingkoKernel"
 export SUBLEVEL="v5.4.$(cat "${MainPath}/Makefile" | grep "SUBLEVEL =" | sed 's/SUBLEVEL = *//g')"
-IMAGE="${MainPath}/out/arch/arm64/boot/Image"
+IMAGE="${MainPath}/out/arch/arm64/boot/Image.gz"
 CORES="$(nproc --all)"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
